@@ -1,0 +1,10 @@
+function X=signal_sparse(M, alpha, SNR, K,w)
+N_alpha=length(alpha);
+A=exp(-i*pi*(0:M-1)'*sin(alpha*pi/180));
+%Vj=diag(sqrt((   10.^(SNR/10)   )/2));
+%S=Vj*(randn(N_alpha,K)+i*randn(N_alpha,K));
+s=sqrt(10.^(SNR/10))*exp(1j*w*[0:K-1]);%仿真信号
+%x=awgn(s,snr);
+X=A*s+(1/sqrt(2))*(randn(M,K)+1j*randn(M,K));%加了高斯白噪声后的阵列接收信号
+%noise=sqrt(1/2)*(randn(M,K)+i*randn(M,K));
+%X=A*S+noise;
